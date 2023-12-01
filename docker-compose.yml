@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  app:
+    build: 
+      context: .
+    image: ruby-five
+    container_name: app
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWD: root
+      POSTGRES_HOST: db
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+
+  db:
+    image: postgres:alpine3.15
+    environment:
+      POSTGRES_PASSWORD: root
